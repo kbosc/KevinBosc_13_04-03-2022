@@ -3,7 +3,9 @@ import { createGlobalStyle } from 'styled-components'
 const StyledGlobalStyle = createGlobalStyle`
     * {
       box-sizing: border-box;
-      font-family: Montserrat, sans-serif;
+      font-family: Avenir, Helvetica, Arial, sans-serif;
+      color: ${props => props.theme.colors.text};
+      text-align: center;
     }
     html, body, nav, header, footer, div, span,
     h1, h2, h3, p,

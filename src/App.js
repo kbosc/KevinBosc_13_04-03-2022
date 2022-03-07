@@ -1,22 +1,32 @@
 import { Routes, Route } from "react-router-dom"
-import GlobalStyle from './utils/style/GlobalStyle'
-import Main from "./pages/Main"
-import Signin from "./pages/Signin"
-import User from "./pages/User"
-import Error from "./pages/Error404"
+import React from "react"
 
+import Header from "./components/Header"
+import Footer from "./components/Footer"
+import Error from "./pages/Error404"
+import Signin from "./pages/Signin"
+import Main from "./pages/Main"
+import User from "./pages/User"
+
+import GlobalStyle from './utils/style/GlobalStyle'
+import { ThemeProvider } from "styled-components"
+import { ThemeDefault } from "./utils/style/theme"
 
 function App() {
   return (
-    <div>
-      <GlobalStyle />
-      <Routes>
-        <Route path='/' element={<Main />} />
-        <Route path='/signin' element={<Signin />}/>
-        <Route path='/user/:id' element={<User />}/>
-        <Route path='/*' element={<Error />}/>
-      </Routes>
-    </div>
+    <ThemeProvider theme={ThemeDefault}>
+      <React.Fragment>
+        <GlobalStyle />
+        <Header />
+        <Routes>
+          <Route path='/' element={<Main />} />
+          <Route path='/signin' element={<Signin />}/>
+          <Route path='/user/:id' element={<User />}/>
+          <Route path='/*' element={<Error />}/>
+        </Routes>
+        <Footer />
+      </React.Fragment>
+    </ThemeProvider>
   );
 }
 
