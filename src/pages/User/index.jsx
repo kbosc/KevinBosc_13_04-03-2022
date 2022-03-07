@@ -1,4 +1,7 @@
 import React from 'react';
+
+import UserAccount from '../../components/UserAccount/index';
+import { Button } from "../../utils/style/theme"
 import * as Style from "./style"
 
 export default function Main(props) {
@@ -10,25 +13,9 @@ export default function Main(props) {
                     <br />
                     Tony Jarvis
                 </h1>
-                <Style.MainHeaderButton>Edit Name</Style.MainHeaderButton>
+                <Button>Edit Name</Button>
             </Style.MainHeader>
-            <Style.MainAccount>
-                <Style.MainAccountContentWrapper>
-                    <Style.AccountTitle class="account-title">Argent Bank Checking (x8349)</Style.AccountTitle>
-                    <Style.AccountAmount class="account-amount">$2,082.79</Style.AccountAmount>
-                    <Style.AccountAmountDescription class="account-amount-description">Available Balance</Style.AccountAmountDescription>
-                </Style.MainAccountContentWrapper>
-                <Style.MainAccountContentWrapper>
-                    <Style.AccountTitle class="account-title">Argent Bank Checking (x8349)</Style.AccountTitle>
-                    <Style.AccountAmount class="account-amount">$2,082.79</Style.AccountAmount>
-                    <Style.AccountAmountDescription class="account-amount-description">Available Balance</Style.AccountAmountDescription>
-                </Style.MainAccountContentWrapper>
-                <Style.MainAccountContentWrapper>
-                    <Style.AccountTitle class="account-title">Argent Bank Checking (x8349)</Style.AccountTitle>
-                    <Style.AccountAmount class="account-amount">$2,082.79</Style.AccountAmount>
-                    <Style.AccountAmountDescription class="account-amount-description">Available Balance</Style.AccountAmountDescription>
-                </Style.MainAccountContentWrapper>
-            </Style.MainAccount>
+            <UserAccount />            
         </Style.MainContent>
     );
 }
