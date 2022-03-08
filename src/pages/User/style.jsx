@@ -6,10 +6,3 @@ export const MainContent = styled.main`
     flex: 1;
     height: 80vh;
 `
-export const MainHeader = styled.div`
-    margin-bottom: 2rem;
-    > h1 {
-        padding: 2rem;
-        color: white;
-    }
-`

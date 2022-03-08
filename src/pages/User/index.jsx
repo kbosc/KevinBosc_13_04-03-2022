@@ -1,20 +1,13 @@
 import React from 'react';
 
 import UserAccount from '../../components/UserAccount/index';
-import { Button } from "../../utils/style/theme"
+import UserHeader from "../../components/UserHeader/index"
 import * as Style from "./style"
 
 export default function Main(props) {
     return (
         <Style.MainContent>
-            <Style.MainHeader>
-                <h1>
-                    Welcome back
-                    <br />
-                    Tony Jarvis
-                </h1>
-                <Button>Edit Name</Button>
-            </Style.MainHeader>
+            <UserHeader />
             <UserAccount />            
         </Style.MainContent>
     );
