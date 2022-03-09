@@ -1,10 +1,11 @@
 import React from 'react';
-import * as Style from "./style"
-
 
 import userPng from "../../assets/user.png";
+import * as Style from "./style"
 
 export default function Main(props) {
+
+    
     return (
         <Style.MainContent>
             <Style.MainContentSection>
@@ -12,16 +13,16 @@ export default function Main(props) {
                 <h1>Sign in</h1>
                 <Style.MainContentForm>
                     <Style.InputWrapper>
-                        <label for="username">Username</label>
+                        <label htmlFor="username">Username</label>
                         <input type="text" id="username" />
                     </Style.InputWrapper>
                     <Style.InputWrapper>
-                        <label for="password">Password</label>
+                        <label htmlFor="password">Password</label>
                         <input type="password" id="password" />
                     </Style.InputWrapper>
                     <Style.InputRemember>
                         <input type="checkbox" id="remember-me" />
-                        <label for="remember-me">Remember me</label>
+                        <label htmlFor="remember-me">Remember me</label>
                     </Style.InputRemember>
                     <Style.FormSignInLink to="/user/12">Sign in</Style.FormSignInLink>
                 </Style.MainContentForm>
