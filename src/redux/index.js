@@ -1,9 +1,22 @@
-import { createSlice, configureStore } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, configureStore } from "@reduxjs/toolkit";
+import api, { setAccessToken, normalizeBULLSHITOpenClassRoom } from "../api"
+
+export const userLogin = createAsyncThunk(
+    'user/login',
+    async (credential) => {
+        const {token} = await api.post("/user/login", credential)
+            .then(normalizeBULLSHITOpenClassRoom);
+        setAccessToken(token);
+        const user = await api.post('/user/profile')
+            .then(normalizeBULLSHITOpenClassRoom);
+        return user;
+    }
+  )
 
 const userSlice = createSlice({
     name: "user",
     initialState: {
-        isLogged: true,
+        isLogged: false,
         isRemember: false,
         token: "",
         data: {
@@ -14,38 +27,20 @@ const userSlice = createSlice({
         },
     },
     reducers: {
-        getUser: (state, action) => {},
-        getToken: (state, action) => {},
-        updateUser: (state, action)  => {
-            // return () => {
-                console.log(action.payload + "" + action.payload);
-                state.data.firstName = action.payload[0]
-                state.data.lastName = action.payload[1]
-                // state.data.firstName = inputFirstName
-                // state.data.lastName = inputLastName
-            // }
-            // const newProfile = {
-            //     firstName: action.payload[0],
-            //     lastName: action.payload[1],
-            //     email: "tony@stark.com",
-            //     password: "password123", 
-            // }
-            // state.data.push(newProfile)
-            // const updatingUser = {
-            //     data.firstName : action.payload[0],
-            //     data.lastName : action.payload[1],
-            // }
-            // const updatingUser = state.data.find( data => data.firstName === state.data.firstName)
-            // updatingUser.firstName = action.payload
-            
-        },
         logout: (state, action) => {
             state.isLogged = !state.isLogged
         },
-    }
+    },
+    extraReducers: (builder) => {
+        // Add reducers for additional action types here, and handle loading state as needed
+        builder.addCase(userLogin.fulfilled, (state, action) => {
+            state.data = action.payload;
+            state.isLogged = true;
+        })
+      },
 })
 
-export const { getUser, getToken, updateUser, logout } = userSlice.actions
+export const { getUser, getLogin, updateUser, logout } = userSlice.actions
 
 export const store = configureStore({
     reducer: {

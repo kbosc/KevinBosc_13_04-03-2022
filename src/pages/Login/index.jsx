@@ -1,11 +1,25 @@
+import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux"
 import React from 'react';
 
 import userPng from "../../assets/user.png";
+import { userLogin } from "../../redux"
 import * as Style from "./style"
 
-export default function Main(props) {
+function Login(props) {
+    const inputUsername = React.createRef();
+    const inputPassword = React.createRef();
+    const dispatch = useDispatch()
+    const navigate = useNavigate();
 
-    
+    const onSubmitConnect = async () => {
+        const {payload} = await dispatch(userLogin({
+            email: inputUsername.current.value,
+            password: inputPassword.current.value,
+        }));
+        navigate(`/user/${payload.id}`, { replace: true });
+      };
+
     return (
         <Style.MainContent>
             <Style.MainContentSection>
@@ -14,19 +28,21 @@ export default function Main(props) {
                 <Style.MainContentForm>
                     <Style.InputWrapper>
                         <label htmlFor="username">Username</label>
-                        <input type="text" id="username" />
+                        <input ref={inputUsername} type="text" id="username" />
                     </Style.InputWrapper>
                     <Style.InputWrapper>
                         <label htmlFor="password">Password</label>
-                        <input type="password" id="password" />
+                        <input ref={inputPassword} type="password" id="password" />
                     </Style.InputWrapper>
                     <Style.InputRemember>
                         <input type="checkbox" id="remember-me" />
                         <label htmlFor="remember-me">Remember me</label>
                     </Style.InputRemember>
-                    <Style.FormSignInLink to="/user/12">Sign in</Style.FormSignInLink>
+                    <Style.FormSignInLink onClick={onSubmitConnect} >Sign in</Style.FormSignInLink>
                 </Style.MainContentForm>
             </Style.MainContentSection>
         </Style.MainContent>
     );
 }
+
+export default Login;

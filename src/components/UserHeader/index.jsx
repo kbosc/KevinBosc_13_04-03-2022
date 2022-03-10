@@ -14,9 +14,8 @@ export default function UserHeader(props) {
     const inputLastName = React.createRef();
     const dispatch = useDispatch()
     const arrayName = []
-    console.log(arrayName);
     const onclickChangeUserData = (e) => {
-        setUpdateProfile(!updateProfile)
+        toggleUpdateProfile()
         arrayName.push(inputFirstName.current.value, inputLastName.current.value)
         dispatch(updateUser(arrayName))
       };

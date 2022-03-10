@@ -37,6 +37,7 @@ export const InputWrapper = styled.div`
         font-weight: bold;
     }
     > input {
+        text-align: left;
         padding: 5px;
         font-size: 1.2rem;
         border: 1px solid black;
@@ -56,7 +57,7 @@ export const InputRemember = styled.div`
     }
 
 `
-export const FormSignInLink = styled(Link)`
+export const FormSignInLink = styled.button`
     display: block;
     width: 100%;
     padding: 8px;
