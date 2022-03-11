@@ -1,9 +1,9 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux"
+import { Link } from 'react-router-dom';
+import React from 'react';
 
 import logo from "../../assets/argentBankLogo.png";
-import logOut from "../../assets/logout.png";
+import logoOut from "../../assets/logout.png";
 import userPng from "../../assets/user.png";
 import { logout } from "../../redux"
 import * as Style from "./style"
@@ -18,14 +18,14 @@ export default function Header(props) {
                 <img src={ logo } alt='Argent Bank Logo'/>
             </Link>
             <Style.HeaderContainerUser>
-                <Style.HeaderUserLink to="/login">
+                <Style.HeaderUserLink to={userData.isLogged ? `/user/${userData.data.id}` : "/login" }>
                     <img src={ userPng } alt="logo utilisateur" />
                     <p>{userData.isLogged ? userData.data.firstName : "Sign In"}</p>
                 </Style.HeaderUserLink>
                 {
                     userData.isLogged &&
-                    <Style.HeaderUserLink to="/" onClick={() => dispatch(logout(userData))}>
-                        <img src={ logOut } alt="logo déconnexion" />
+                    <Style.HeaderUserLink to="/" onClick={() => dispatch(logout(userData, console.log(userData)))}>
+                        <img src={ logoOut } alt="logo déconnexion" />
                         <p>Sign Out</p>
                     </Style.HeaderUserLink>
                 }

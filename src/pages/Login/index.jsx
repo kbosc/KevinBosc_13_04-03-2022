@@ -6,7 +6,7 @@ import userPng from "../../assets/user.png";
 import { userLogin } from "../../redux"
 import * as Style from "./style"
 
-function Login(props) {
+function Login() {
     const inputUsername = React.createRef();
     const inputPassword = React.createRef();
     const dispatch = useDispatch()
