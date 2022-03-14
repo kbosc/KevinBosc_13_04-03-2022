@@ -18,14 +18,7 @@ export default function UserHeader(props) {
             firstName: inputFirstName.current.value,
             lastName: inputLastName.current.value,
         }));
-        // dispatch(modifyData([{
-        //     email: userData.data.email,
-        //     password: "password123",
-            
-        // }, {
-        //     firstName: inputFirstName.current.value,
-        //     lastName: inputLastName.current.value,
-        // }]));
+        toggleUpdateProfile()
       };
 
     return (

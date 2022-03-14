@@ -19,19 +19,12 @@ export const modifyData = createAsyncThunk(
     'user/login/put',
     async (credential, {getState}) => {
         const state = getState();
-        console.log(state);
+        // console.log(state);
         setAccessToken(state.user.token);
         const modifyUser = await api.put('/user/profile', credential)
             .then(credential);
-        // const {token} = await api.post("/user/login", credential[0])
-        //     .then(normalizeBULLSHITOpenClassRoom);
-        // setAccessToken(token);
-        // const modifyUser = await api.put('/user/profile', credential[1])
-        //     .then(credential);
-        //     // console.log(credential[0]);
-        //     // console.log(user);
-        //     // console.log(credential[1]);
-        return modifyUser;
+        // console.log(credential)
+        return modifyUser.data.body;
     }
   )
 
@@ -41,17 +34,13 @@ const userSlice = createSlice({
         isLogged: false,
         isRemember: false,
         token: "",
-        data: {
-            firstName: "Tony",
-            lastName: "Stark",
-            email: "tony@stark.com",
-            password: "password123",         
-        },
+        data: {},
     },
     reducers: {
         logout: (state, action) => {
             state.isLogged = !state.isLogged
-            // state.data = {}
+            state.data = {}
+            state.token = ""
         },
         modifyData: (state, action) => {
             state.data.firstName = action.payload[0]
@@ -68,8 +57,9 @@ const userSlice = createSlice({
             // console.log(state.token);
         })
         .addCase(modifyData.fulfilled, (state, action) => {
-            state.data.firstName = action.payload.data.body.firstName;
-            state.data.lastName = action.payload.data.body.lastName;
+            state.data.firstName = action.payload.firstName;
+            state.data.lastName = action.payload.lastName;
+
         })
       },
 })
@@ -80,16 +70,5 @@ export const store = configureStore({
     reducer: {
         user: userSlice.reducer
     },
-    // middleware: (getDefaultMiddleware) =>
-    // getDefaultMiddleware({
-    //   serializableCheck: {
-    //     // Ignore these action types
-    //     ignoredActions: ['your/action/type'],
-    //     // Ignore these field paths in all actions
-    //     ignoredActionPaths: ['meta.arg', 'payload.timestamp'],
-    //     // Ignore these paths in the state
-    //     ignoredPaths: ['items.dates'],
-    //   },
-    // }),
 })
 
