@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { Link } from 'react-router-dom';
 
 export const MainContent = styled.main`
     background-color: ${props => props.theme.colors.backgroundDark};
@@ -20,9 +19,6 @@ export const MainContentSection = styled.section`
         display: inline-block;
         width: 20px;
     }
-    > h1 {
-
-    }
 `
 export const MainContentForm = styled.div`
     display: block;
@@ -41,10 +37,6 @@ export const InputWrapper = styled.div`
         padding: 5px;
         font-size: 1.2rem;
         border: 1px solid black;
-        // &: selected {
-        //     background-color: -internal-light-dark(rgb(232, 240, 254), rgba(70, 90, 126, 0.4)) !important;
-        //     color: -internal-light-dark(black, white) !important;
-        // }
     }
 `
 export const InputRemember = styled.div`

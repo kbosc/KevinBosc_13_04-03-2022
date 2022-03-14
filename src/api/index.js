@@ -8,7 +8,7 @@ export function setAccessToken(token){
     }
 }
 
-export function normalizeBULLSHITOpenClassRoom(res) {
+export function normalizePath(res) {
     return res.data.body;
 }
 

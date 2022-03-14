@@ -22,9 +22,8 @@ export default function Header(props) {
                     <img src={ userPng } alt="logo utilisateur" />
                     <p>{userData.isLogged ? userData.data.firstName : "Sign In"}</p>
                 </Style.HeaderUserLink>
-                {
-                    userData.isLogged &&
-                    <Style.HeaderUserLink to="/" onClick={() => dispatch(logout(userData, console.log(userData)))}>
+                { userData.isLogged &&
+                    <Style.HeaderUserLink to="/" onClick={() => dispatch(logout(userData))}>
                         <img src={ logoOut } alt="logo déconnexion" />
                         <p>Sign Out</p>
                     </Style.HeaderUserLink>

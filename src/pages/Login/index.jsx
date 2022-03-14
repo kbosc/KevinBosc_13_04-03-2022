@@ -17,7 +17,6 @@ function Login() {
             email: inputUsername.current.value,
             password: inputPassword.current.value,
         }));
-        console.log(payload);
         navigate(`/user/${payload.user.id}`, { replace: true });
       };
 

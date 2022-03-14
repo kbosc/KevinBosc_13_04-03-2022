@@ -19,7 +19,7 @@ paths:
       tags:
         - User transactions
       summary: Transactions of user account api
-      description: API for fetch all transaction of user
+      description: API for fetch all transaction of users
       parameters:
         - in: header
           name: Authorization
@@ -50,7 +50,7 @@ paths:
       tags:
         - User transactions
       summary: User Transaction API
-      description: API for fetching a user Transaction
+      description: API for fetch a user transaction
       parameters:
         - in: header
           name: Authorization
@@ -85,7 +85,7 @@ paths:
       tags:
         - User transactions
       summary: User new Transaction API
-      description: API for adding a user Transaction
+      description: API for add a user transaction
       parameters:
         - in: header
           name: Authorization
@@ -120,7 +120,7 @@ paths:
       tags:
         - User transactions
       summary: User udpate Transaction API
-      description: API for updating a user Transaction
+      description: API for update a user transaction
       parameters:
         - in: header
           name: Authorization
@@ -160,7 +160,7 @@ paths:
       tags:
         - User transactions
       summary: User delete Transaction API
-      description: API for deleting a user Transaction
+      description: API for delete a user transaction
       parameters:
         - in: header
           name: Authorization

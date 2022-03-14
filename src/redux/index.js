@@ -1,16 +1,14 @@
 import { createAsyncThunk, createSlice, configureStore } from "@reduxjs/toolkit";
-import api, { setAccessToken, normalizeBULLSHITOpenClassRoom } from "../api"
+import api, { setAccessToken, normalizePath } from "../api"
 
 export const userLogin = createAsyncThunk(
     'user/login/get',
     async (credential) => {
         const {token} = await api.post("/user/login", credential)
-            .then(normalizeBULLSHITOpenClassRoom);
+            .then(normalizePath);
         setAccessToken(token);
         const user = await api.post('/user/profile')
-            .then(normalizeBULLSHITOpenClassRoom);
-            // console.log(credential);
-            // console.log(user);
+            .then(normalizePath);
         return {user, token};
     }
   )
@@ -19,11 +17,9 @@ export const modifyData = createAsyncThunk(
     'user/login/put',
     async (credential, {getState}) => {
         const state = getState();
-        // console.log(state);
         setAccessToken(state.user.token);
         const modifyUser = await api.put('/user/profile', credential)
             .then(credential);
-        // console.log(credential)
         return modifyUser.data.body;
     }
   )
@@ -53,8 +49,6 @@ const userSlice = createSlice({
             state.data = action.payload.user;
             state.token = action.payload.token
             state.isLogged = !state.isLogged;
-            // console.log(action);
-            // console.log(state.token);
         })
         .addCase(modifyData.fulfilled, (state, action) => {
             state.data.firstName = action.payload.firstName;
