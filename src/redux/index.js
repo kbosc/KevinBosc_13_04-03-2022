@@ -38,10 +38,6 @@ const userSlice = createSlice({
             state.data = {}
             state.token = ""
         },
-        modifyData: (state, action) => {
-            state.data.firstName = action.payload[0]
-            state.data.lastName = action.payload[1]
-        }
     },
     extraReducers: (builder) => {
         builder
@@ -58,7 +54,7 @@ const userSlice = createSlice({
       },
 })
 
-export const { getUser, getLogin, updateUser, logout } = userSlice.actions
+export const { logout } = userSlice.actions
 
 export const store = configureStore({
     reducer: {
