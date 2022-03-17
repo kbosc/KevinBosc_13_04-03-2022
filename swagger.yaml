@@ -19,8 +19,16 @@ paths:
       tags:
         - User transactions
       summary: Transactions of user account api
-      description: API for fetch all transaction of users
+      description: API for fetch all transaction of current month
       parameters:
+        - in: query
+          name: from
+          type: string
+          description: current month
+        - in: query
+          name: to
+          type: string
+          description: current month
         - in: header
           name: Authorization
           description: Attach Bearer JWT token
@@ -79,48 +87,13 @@ paths:
         "500":
           description: Internal Server Error
 
-    post:
+    patch:
       security:
         - Bearer: []
       tags:
         - User transactions
-      summary: User new Transaction API
-      description: API for add a user transaction
-      parameters:
-        - in: header
-          name: Authorization
-          description: Attach Bearer JWT token
-          required: true
-          type: string
-        - in: path
-          name: accountId
-          description: account id
-          required: true
-          type: string
-        - in: path
-          name: transactionId
-          description: Transaction id
-          required: true
-          type: string
-      produces:
-        - application/json
-      responses:
-        "201":
-          description: User Transaction created successully
-          schema:
-            $ref: "#/definitions/TransactionResponse"
-        "400":
-          description: Invalid Fields
-        "500":
-          description: Internal Server Error
-
-    put:
-      security:
-        - Bearer: []
-      tags:
-        - User transactions
-      summary: User udpate Transaction API
-      description: API for update a user transaction
+      summary: User delete Transaction API
+      description: API for updating a user transaction
       parameters:
         - in: header
           name: Authorization
@@ -139,49 +112,17 @@ paths:
           type: string
         - in: body
           name: body
-          description: Update user transaction attributes
+          description: Update user profile attributes
           required: true
           schema:
-            $ref: "#/definitions/Transaction"
-      produces:
-        - application/json
-      responses:
-        "200":
-          description: User Transaction edited successully
-          schema:
-            $ref: "#/definitions/TransactionResponse"
-        "400":
-          description: Invalid Fields
-        "500":
-          description: Internal Server Error
-    delete:
-      security:
-        - Bearer: []
-      tags:
-        - User transactions
-      summary: User delete Transaction API
-      description: API for delete a user transaction
-      parameters:
-        - in: header
-          name: Authorization
-          description: Attach Bearer JWT token
-          required: true
-          type: string
-        - in: path
-          name: accountId
-          description: account id
-          required: true
-          type: string
-        - in: path
-          name: transactionId
-          description: Transaction id
-          required: true
-          type: string
+            $ref: '#/definitions/UserProfile'
       produces:
         - application/json
       responses:
         "200":
           description: User Transaction deleted successully
+          schema:
+            $ref: "#/definitions/TransactionResponse"
         "400":
           description: Invalid Fields
         "500":
@@ -192,20 +133,7 @@ securityDefinitions:
     name: Authorization
     in: header
 definitions:
-  User:
-    properties:
-      email:
-        type: string
-        description: user email
-      password:
-        type: string
-        description: user password
-      firstName:
-        type: string
-        description: user first name
-      lastName:
-        type: string
-        description: user last name
+
   Login:
     properties:
       email:
@@ -223,48 +151,43 @@ definitions:
         description: user token
       body:
         $ref: "#/definitions/LoginResponse"
-  ApiResponse:
-    type: object
-    properties:
-      status:
-        type: integer
-      message:
-        type: string
-      body:
-        $ref: "#/definitions/ApiResponse_body"
-  ApiResponse_body:
-    type: object
-    properties:
-      id:
-        type: string
-      email:
-        type: string
+
   AccountResponse:
-    type: object
-    properties:
-      AccountId:
-        type: string
-      AccountName:
-        type: string
-      AmountBalance:
-        type: integer
-      TransactionsIDS:
-        items: {}
-      body:
-        $ref: "#/definitions/AccountResponse"
+    type: array
+    items: 
+      properties:
+        TransactionId:
+          type: string
+        Date:
+          type: string
+        Description:
+          type: string
+        Amount:
+          type: string
+        Balance:
+          type: string
+        TransactionType:
+          type: string
+        Category:
+          type: string
+        Notes:
+          type: string
+        body:
+          $ref: "#/definitions/AccountResponse"
   Transaction:
-    type: object
-    properties:
-      AccountId:
-        type: string
-      TransactionId:
-        type: string
-      Category:
-        type: string
-      Notes:
-        type: string
-      body:
-        $ref: "#/definitions/Transaction"
+    type: array
+    items: 
+      properties:
+        AccountId:
+          type: string
+        TransactionId:
+          type: string
+        Category:
+          type: string
+        Notes:
+          type: string
+        body:
+          $ref: "#/definitions/Transaction"
   TransactionResponse:
     type: object
     properties:
@@ -286,3 +209,11 @@ definitions:
         type: string
       body:
         $ref: "#/definitions/TransactionResponse"
+  UserProfile:
+    type: object
+    properties:
+      Category:
+        type: string
+      Notes:
+        type: string
+

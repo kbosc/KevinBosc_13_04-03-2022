@@ -5,4 +5,7 @@ export const MainContent = styled.main`
     display: block;
     flex: 1;
     height: 80vh;
+    @media (max-width: 920px) {
+        height: 100vh;
+    }
 `
